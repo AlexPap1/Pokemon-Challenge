@@ -2,21 +2,44 @@ import React from 'react';
 import speaker from "./speaker.png";
 import './App.css';
 
-//App function starts game
-function App() {
-    let comp;
-    if (!this.state.playing)
-        comp = <Intro record={this.state.record} setPlay={this.setPlay} />;
-    else
-        comp = <Play checkRecord={this.checkRecord} setNoPlay={this.setNoPlay} />;
-    return (
-        <div className="App">
-            <h1>Pokemon Explorers</h1>
-            <div id="View">
-                {comp}
+//App function starts game (changed to class to avoid error in constructor)
+class App extends React.Component {
+    constructor(props) {
+        //gets high score from cookie function, if null, score is set to 0
+        let record = getCookie("score")
+        if (record == null) {
+            record=0;
+        }
+        //state on starting application, not playign and record is set to above record status
+        this.state = {
+            playing: false,
+            record: record
+        };
+    };
+
+    setPlay = () => {
+        this.setState({playing: true});
+    };
+
+    setNoPlay = () => {
+        this.setState({playing: false})
+    };
+
+    appStart() {
+        let comp;
+        if (!this.state.playing)
+            comp = <Intro record={this.state.record} setPlay={this.setPlay} />;
+        else
+            comp = <Play checkRecord={this.checkRecord} setNoPlay={this.setNoPlay} />;
+        return (
+            <div className="App">
+                <h1>Pokemon Explorers</h1>
+                <div id="View">
+                    {comp}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 //Intro for home screen before game begins. Displays record and start button
