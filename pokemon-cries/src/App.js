@@ -8,7 +8,7 @@ class App extends React.Component {
         //gets high score from cookie function, if null, score is set to 0
         let record = getCookie("score")
         if (record == null) {
-            record=0;
+            record = 0;
         }
         //state on starting application, not playign and record is set to above record status
         this.state = {
@@ -25,7 +25,15 @@ class App extends React.Component {
         this.setState({playing: false})
     };
 
-    appStart() {
+    //checks and compares score to record to overwrite
+    checkRecord = (score) => {
+        if (score > this.state.record) {
+            this.setState({record: score});
+            document.cookie = "record=" + score;
+        }
+    }
+
+    render() {
         let comp;
         if (!this.state.playing)
             comp = <Intro record={this.state.record} setPlay={this.setPlay} />;
@@ -48,7 +56,7 @@ class Intro extends React.Component {
       return(
           <div id="menu">
               <p>Click the Pokemon whose cry you hear</p>
-              <p>Your record is {this.props.record}.</p>
+              <p>Your high is {this.props.record}.</p>
               <button onClick={this.props.setPlay}>Begin!</button>
           </div>
       )
@@ -58,6 +66,27 @@ class Intro extends React.Component {
 //Play will set the game up and start
 class Play extends React.Component {
 
+
+    restart = () => {
+
+    }
+}
+
+//end of game function
+class Result extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>
+                    <h2>Game Over!</h2>
+                    <p>Your score is {this.props.score}.</p>
+                </div>
+                <div>
+                    <button onClick={this.props.restart}>Restart</button>
+                </div>
+            </div>
+        );
+    }
 }
 
 //shortest method of get cookie in JS I could find. set cookie and delete cookie commented below for future reference
