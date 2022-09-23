@@ -48,6 +48,18 @@
   font-size: 40px;
 }
 
+.speakerimg {
+  height: 100px;
+}
+
+#speaker {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 50px;
+}
+
 h1 {
   font-size: 70px;
 }
@@ -57,4 +69,5 @@ button {
   font-size: 40px;
   padding: 5px 10px;
   cursor: pointer;
+  border-radius: 10px;
 }

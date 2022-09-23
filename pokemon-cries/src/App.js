@@ -66,29 +66,61 @@ class Intro extends React.Component {
 
 //Play will set the game up and start
 class Play extends React.Component {
-
-
-    restart = () => {
-
+    constructor(props) {
+        super(props);
+        let choices = this.generateChoices();
+        this.state = {
+            score: 0,
+            choices: choices,
+            answer: choices[Math.floor(Math.random() * 3)],
+            gameOver: false
+        };
     }
-}
 
-//end of game function
-class Result extends React.Component {
+    generateChoices = () => {
+        let choices = [];
+        while (choices.length < 3) {
+            let num = Math.floor(Math.random() * 151) + 1;
+            if (!choices.includes(num)) {
+                choices.push(num);
+            }
+        }
+        return choices;
+    }
+
+    playAudio = () => {
+        this.refs.cry.play();
+    }
+
     render() {
-        return (
-            <div>
-                <div>
-                    <h2>Game Over!</h2>
-                    <p>Your score is {this.props.score}.</p>
-                </div>
-                <div>
-                    <button onClick={this.props.restart}>Restart</button>
+        let cries = `${process.env.PUBLIC_URL}/cries/${this.state.answer}.wav`;
+        return(
+            <div className="playingTrue">
+                <audio id="cry" ref="cry" src={cries}></audio>
+                <div id="speaker">
+                    <img src={speaker} alt="speaker icon" className="speakerimg" onClick={this.playAudio}/>
                 </div>
             </div>
-        );
+        )
     }
 }
+
+// //end of game function
+// class Result extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <div>
+//                     <h2>Game Over!</h2>
+//                     <p>Your score is {this.props.score}.</p>
+//                 </div>
+//                 <div>
+//                     <button onClick={this.props.restart}>Restart</button>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
 
 //shortest method of get cookie in JS I could find. set cookie and delete cookie commented below for future reference
 function getCookie(name) {
