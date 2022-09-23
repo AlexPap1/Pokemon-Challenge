@@ -77,6 +77,7 @@ class Play extends React.Component {
         };
     }
 
+    //generates 3 numbers between 1 and 151 without repeats
     generateChoices = () => {
         let choices = [];
         while (choices.length < 3) {
@@ -88,10 +89,12 @@ class Play extends React.Component {
         return choices;
     }
 
+    //plays <audio>
     playAudio = () => {
         this.refs.cry.play();
     }
 
+    //cries are random number snwer (b/w 1 and 151) .wav. All .wav cries are #.wav
     render() {
         let cries = `${process.env.PUBLIC_URL}/cries/${this.state.answer}.wav`;
         return(
