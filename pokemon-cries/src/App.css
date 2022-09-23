@@ -1,4 +1,11 @@
+* {
+  background-image: url("../public/bg_assets/blank-wild-pokemon-appears.png");
+  background-repeat: no-repeat;
+  background-size: 1500px;
+}
+
 .App {
+  padding-top: 100px;
   text-align: center;
 }
 
@@ -35,4 +42,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#menu {
+  font-size: 40px;
+}
+
+h1 {
+  font-size: 70px;
+}
+
+button {
+  font-family: specialfont;
+  font-size: 40px;
+  padding: 5px 10px;
+  cursor: pointer;
 }

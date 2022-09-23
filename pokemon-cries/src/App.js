@@ -5,8 +5,9 @@ import './App.css';
 //App function starts game (changed to class to avoid error in constructor)
 class App extends React.Component {
     constructor(props) {
+        super(props);
         //gets high score from cookie function, if null, score is set to 0
-        let record = getCookie("score")
+        let record = getCookie("record")
         if (record == null) {
             record = 0;
         }
@@ -56,8 +57,8 @@ class Intro extends React.Component {
       return(
           <div id="menu">
               <p>Click the Pokemon whose cry you hear</p>
-              <p>Your high is {this.props.record}.</p>
-              <button onClick={this.props.setPlay}>Begin!</button>
+              <p>Your high score is {this.props.record}.</p>
+              <button onClick={this.props.setPlay}>Start!</button>
           </div>
       )
   }
