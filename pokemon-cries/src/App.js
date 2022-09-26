@@ -80,7 +80,7 @@ class Play extends React.Component {
     //generates 3 numbers between 1 and 151 without repeats
     generateChoices = () => {
         let choices = [];
-        while (choices.length < 3) {
+        while (choices.length < 4) {
             let num = Math.floor(Math.random() * 151) + 1;
             if (!choices.includes(num)) {
                 choices.push(num);
@@ -94,36 +94,53 @@ class Play extends React.Component {
         this.refs.cry.play();
     }
 
+    GenSprites = () => {
+        return this.state.choices.map((img, index) => {
+            const img_path = `${process.env.PUBLIC_URL}/sprites/${img}.png`;
+            return <img id={img} className="choices" key={index} src={img_path} alt="pokemon sprite options" onClick={this.checkAnswer} />
+        })
+    }
+
     //cries are random number snwer (b/w 1 and 151) .wav. All .wav cries are #.wav
     render() {
         let cries = `${process.env.PUBLIC_URL}/cries/${this.state.answer}.wav`;
+            if (this.state.gameOver) {
+            return <Result score={this.state.score} checkRecord={this.props.checkRecord} restart={this.restart} />
+        }
         return(
             <div className="playingTrue">
                 <audio id="cry" ref="cry" src={cries}></audio>
                 <div id="speaker">
                     <img src={speaker} alt="speaker icon" className="speakerimg" onClick={this.playAudio}/>
                 </div>
+                <div id="choices">
+                    { this.GenSprites() }
+                </div>
+                <div>
+                    <p id="score">{this.state.score}</p>
+                </div>
+                <button onClick={this.props.setNoPlay}>Give Up</button>
             </div>
-        )
+        );
     }
 }
 
 // //end of game function
-// class Result extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 <div>
-//                     <h2>Game Over!</h2>
-//                     <p>Your score is {this.props.score}.</p>
-//                 </div>
-//                 <div>
-//                     <button onClick={this.props.restart}>Restart</button>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
+class Result extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>
+                    <h2>Game Over!</h2>
+                    <p>Your score is {this.props.score}.</p>
+                </div>
+                <div>
+                    <button onClick={this.props.restart}>Restart</button>
+                </div>
+            </div>
+        );
+    }
+}
 
 //shortest method of get cookie in JS I could find. set cookie and delete cookie commented below for future reference
 function getCookie(name) {
