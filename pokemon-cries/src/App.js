@@ -1,5 +1,5 @@
 import React from 'react';
-import speaker from "./speaker.png";
+import mic from "./mic.png";
 import './App.css';
 
 //App function starts game (changed to class to avoid error in constructor)
@@ -56,8 +56,7 @@ class Intro extends React.Component {
   render() {
       return(
           <div id="menu">
-              <p>Click the Pokemon whose cry you hear</p>
-              <p>Your high score is {this.props.record}.</p>
+              <p>Click the Pokemon whose cry you hear, your high score is {this.props.record}.</p>
               <button onClick={this.props.setPlay}>Start!</button>
           </div>
       )
@@ -68,17 +67,17 @@ class Intro extends React.Component {
 class Play extends React.Component {
     constructor(props) {
         super(props);
-        let choices = this.generateChoices();
+        let choices = this.genChoices();
         this.state = {
             score: 0,
             choices: choices,
             answer: choices[Math.floor(Math.random() * 3)],
-            gameOver: false
+            loss: false
         };
     }
 
     //generates 3 numbers between 1 and 151 without repeats
-    generateChoices = () => {
+    genChoices = () => {
         let choices = [];
         while (choices.length < 4) {
             let num = Math.floor(Math.random() * 151) + 1;
@@ -89,35 +88,60 @@ class Play extends React.Component {
         return choices;
     }
 
+    //sets answers for correctness when selecting
+    setChoices = () => {
+        let choices = this.genChoices();
+        this.setState({
+            choices: choices,
+            answer: choices[Math.floor(Math.random() * 3)]
+        });
+    }
+
+    //compares selected answer to set choice. If right, cycles and +1 to score. If wrong, sets loss
+    checkAnswer = (e) => {
+        if (parseInt(e.target.id) === this.state.answer) {
+            this.setChoices();
+            this.setState({score: this.state.score + 1});
+        } else {
+            this.setState({loss: true});
+        }
+    }
+
     //plays <audio>
     playAudio = () => {
         this.refs.cry.play();
     }
 
-    GenSprites = () => {
+    genSprites = () => {
         return this.state.choices.map((img, index) => {
-            const img_path = `${process.env.PUBLIC_URL}/sprites/${img}.png`;
+            const img_path = `${process.env.PUBLIC_URL}/kenSugimori/${img}.png`;
             return <img id={img} className="choices" key={index} src={img_path} alt="pokemon sprite options" onClick={this.checkAnswer} />
         })
+    }
+
+    restart = () => {
+        this.setChoices();
+        this.setState({
+            loss: false,
+            score: 0
+        });
     }
 
     //cries are random number snwer (b/w 1 and 151) .wav. All .wav cries are #.wav
     render() {
         let cries = `${process.env.PUBLIC_URL}/cries/${this.state.answer}.wav`;
-            if (this.state.gameOver) {
+            if (this.state.loss) {
             return <Result score={this.state.score} checkRecord={this.props.checkRecord} restart={this.restart} />
         }
         return(
             <div className="playingTrue">
                 <audio id="cry" ref="cry" src={cries}></audio>
-                <div id="speaker">
-                    <img src={speaker} alt="speaker icon" className="speakerimg" onClick={this.playAudio}/>
-                </div>
                 <div id="choices">
-                    { this.GenSprites() }
+                    { this.genSprites() }
                 </div>
-                <div>
-                    <p id="score">{this.state.score}</p>
+                <div id="mic">
+                    <p id="score" className="score ">Streak: {this.state.score}</p>
+                    <img src={mic} alt="mic icon" className="micimg" onClick={this.playAudio}/>
                 </div>
                 <button onClick={this.props.setNoPlay}>Give Up</button>
             </div>
@@ -130,7 +154,7 @@ class Result extends React.Component {
     render() {
         return (
             <div>
-                <div>
+                <div className= "loss">
                     <h2>Game Over!</h2>
                     <p>Your score is {this.props.score}.</p>
                 </div>

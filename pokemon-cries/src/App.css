@@ -1,12 +1,15 @@
 * {
-  background-image: url("../public/bg_assets/blank-wild-pokemon-appears.png");
-  background-repeat: no-repeat;
-  background-size: 1500px;
+
 }
 
 .App {
   padding-top: 100px;
   text-align: center;
+  background-repeat: no-repeat;
+  background-color: #9bbc0f;
+  background-size: 1200px;
+  background-image: url("../public/bg_assets/gbcBorder.png");
+  background-position: top center;
 }
 
 .App-logo {
@@ -28,7 +31,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -48,16 +50,18 @@
   font-size: 40px;
 }
 
-.speakerimg {
+.micimg {
   height: 100px;
+  padding-right: 100px;
 }
 
-#speaker {
+#mic {
+  display: inline;
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
   width: 50px;
+  background-color: transparent;
 }
 
 h1 {
@@ -70,4 +74,22 @@ button {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 10px;
+}
+
+#score {
+  font-size: 40px;
+}
+
+#choices {
+  height: 151px;
+  cursor: pointer;
+}
+
+#View {
+  padding-bottom: 1000px;
+  
+}
+
+.loss {
+  font-size: 100px;
 }
