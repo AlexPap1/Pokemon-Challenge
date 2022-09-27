@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  },
+  "homepage": "http://AlexPap1.github.io/Pokemon-Explorers-Ver-1",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
