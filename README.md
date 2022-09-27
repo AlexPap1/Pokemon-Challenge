@@ -9,6 +9,8 @@
 ## https://github.com/AlexPap1/
 <br />
 
+![App Image](pokemon-cries/public/bg_assets/Screenshot%202022-09-27%20145132.png)
+
 ## 🖊️ Description 🖊️
 <br />
 
