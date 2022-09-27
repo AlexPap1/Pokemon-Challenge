@@ -56,8 +56,10 @@ class Intro extends React.Component {
   render() {
       return(
           <div id="menu">
-              <p>Click the Pokemon whose cry you hear, your high score is {this.props.record}.</p>
-              <button onClick={this.props.setPlay}>Start!</button>
+                <p>Click the microphone to listen to a Pokemon's cry.</p>
+                <p>Then click the Pokemon whose cry you hear.</p>
+                <p>Try for the highest streak you can!</p>
+                <button onClick={this.props.setPlay}>Start!</button>
           </div>
       )
   }
@@ -156,7 +158,7 @@ class Result extends React.Component {
             <div>
                 <div className= "loss">
                     <h2>Game Over!</h2>
-                    <p>Your score is {this.props.score}.</p>
+                    <p>Your streak is {this.props.score}.</p>
                 </div>
                 <div>
                     <button onClick={this.props.restart}>Restart</button>
