@@ -10,7 +10,7 @@
 <br />
 
 ## Deployed Application
-## https://github.com/AlexPap1/Pokemon-Explorers-Ver-1
+## https://alexpap1.github.io/Pokemon-Explorers-Ver-1/
 <br />
 
 ![App Image](public/bg_assets/Screenshot%202022-09-27%20145132.png)
