@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Pokemon-Explorers-Ver-1/static/css/main.a03f4a80.css",
+    "main.js": "/Pokemon-Explorers-Ver-1/static/js/main.dd22c92f.js",
+    "static/js/787.2d37c362.chunk.js": "/Pokemon-Explorers-Ver-1/static/js/787.2d37c362.chunk.js",
+    "static/media/gbcBorder.png": "/Pokemon-Explorers-Ver-1/static/media/gbcBorder.8c1ba98db6358ef2e78e.png",
+    "static/media/mic.png": "/Pokemon-Explorers-Ver-1/static/media/mic.8b61d88608ba86d69064.png",
+    "static/media/pokemon_pixel_font.ttf": "/Pokemon-Explorers-Ver-1/static/media/pokemon_pixel_font.13c858824ac1c9203408.ttf",
+    "index.html": "/Pokemon-Explorers-Ver-1/index.html",
+    "main.a03f4a80.css.map": "/Pokemon-Explorers-Ver-1/static/css/main.a03f4a80.css.map",
+    "main.dd22c92f.js.map": "/Pokemon-Explorers-Ver-1/static/js/main.dd22c92f.js.map",
+    "787.2d37c362.chunk.js.map": "/Pokemon-Explorers-Ver-1/static/js/787.2d37c362.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a03f4a80.css",
+    "static/js/main.dd22c92f.js"
+  ]
+}
